@@ -13,7 +13,6 @@ logging.basicConfig(filename='static/entries.log', level=logging.ERROR)
 app = Flask(__name__, static_url_path='/static')
 
 database_url = "http://127.0.0.1:8080/noticias?"
-#database_url = "http://127.0.0.1:5000/retrieve?"
 # database_url = 'https://sala-de-situacao-bd.herokuapp.com/retrieve?'
 
 # parametros de filtragem
@@ -86,19 +85,21 @@ def get_database_search():
     
     params_dict['country'] = request.args.get('country','')
     params_dict['data_begin'] = request.args.get('data_begin','')    
-    params_dict['data_end'] = request.args.get('data_end','')        
+    params_dict['data_end'] = request.args.get('data_end','')
+
 
     for parameter in params_dict:
-        if(params_dict[parameter] != ''):
+        if(params_dict[parameter] != '' and params_dict[parameter] != 'countries'):
             if('data' in parameter):
                 date = params_dict[parameter]
                 date = date.split('-')
-                search_query += 'year=' + date[0] + '&'
-                search_query += 'month=' + date[1] + '&'
-                search_query += 'day=' + date[2] + '&'            
+            #    search_query += 'year=' + date[0] + '&'
+            #    search_query += 'month=' + date[1] + '&'
+            #    search_query += 'day=' + date[2] + '&'            
             else:
                 search_query += parameter + '=' + params_dict[parameter] + '&'
-    search_query = search_query[:-1]    
+    search_query = search_query[:-1]   
+    print(database_url + search_query) 
 
     data = retrieve_json(database_url + search_query)
     
@@ -108,7 +109,6 @@ def get_database_search():
 
     if(params_dict['event'] == ''):
         params_dict['event'] == 'Todos os Eventos'
-    
     print('the search requisition is completed')
     return jsonify(process_json(data, params_dict['country'] == "countries", date, params_dict['event']))
 

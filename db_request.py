@@ -48,7 +48,7 @@ def process_json(data, search_country, date, event):
             local = result['uf']
 
         if date != []:
-            date_result = result['date'].split('T')[0].split('-')
+            date_result = result['publishedAt'].split('T')[0].split('-')
             if date_result[0] > date[0]:
                 continue
             elif date_result[0] == date[0]:
