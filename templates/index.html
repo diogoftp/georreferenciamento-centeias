@@ -1,0 +1,87 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Mapa de Notícias - CENTEIAS</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <link rel="shortcut icon" type="image/png" href="/static/favicon.png"/>
+  <link rel="icon" type="image/png" href="/static/favicon.png"/>
+  <link rel="stylesheet" href="static/style.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <!-- Load Leaflet from CDN -->
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+  integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+  crossorigin=""></script>
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
+  integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
+  crossorigin=""></script>
+  <!-- Load Script -->
+  <script type="text/javascript" src="static/script.js"></script>
+</head>
+<body>
+
+  <div class="share">
+    <button class="button-share" onclick="open_share()"><i class='fas fa-share-alt'></i></button>
+    <input type="text" class="text-share" id="link-text-share">
+    <button class="button-click" id="copy-share" onclick="return fieldtoclipboard.copyfield(null, document.getElementById('link-text-share'))">Copiar link</button>
+    <button class="button-share" id="close-share" onclick="close_share()"><i class='fas fa-angle-left'></i></button>
+  </div>
+  
+  <div id="search">
+    <div id="search-title">
+      <div class="linha"></div>
+      <div class="linha"></div>
+      <div class="linha"></div>
+    </div>
+    <button class="link" onclick="show_search('list-nav')"><h6>Pesquisar</h6></button>
+    <ul id="list-nav" class="item-search">
+      <li>
+          <button class="link" onclick="show_search('item-events')"><h6>Eventos</h6></button>
+          <div class="item-search form-search" id="item-events">
+            Selecionar evento: <select name="select-event" id="select-event"><option value="all-events">Todos os Eventos</option></select>
+          </div>
+      </li>
+      <li>
+          <button class="link" onclick="show_search('item-location')"><h6>Localização</h6></button>
+          <div class="item-search form-search" id="item-location">
+            <input type="radio" name="select-location" value="countries" id="countries"> Todos os países<br>
+            <input type="radio" name="select-location" value="BR" id="BR" checked> Apenas o Brasil<br>
+          </div>
+      </li>
+      <li>
+          <button class="link" onclick="show_search('item-date')"><h6>Data</h6></button>
+          <div class="item-search form-search" id="item-date">
+            De: <input type="date" name="date-begin" id="date-begin"> Até: <input type="date" name="date-end" id="date-end">
+          </div>
+      </li>
+      <li>
+        <button class="button-search" id="buttom-search" onclick="request_api()">Realizar pesquisa</button>
+      </li>
+    </ul>
+  </div>
+
+  <div id="links">
+    <button class="link" id="close-links" onclick="$('#links').hide()">F E C H A R</button>
+    <div class="list-links">
+      <ul id="list-items"></ul>
+      </div>
+  </div>
+
+  <div class="details">
+    <div class="text-details">Evento: <span id="detail-event">--</span></div>
+    <div class="text-details">Localização: <span id="detail-location">--</span></div>
+    <div class="text-details">Data de início: <span id="detail-date-begin">--</span></div>
+    <div class="text-details">Data de fim: <span id="detail-date-end">--</span></div>
+  </div>
+
+  <div id="map"></div>
+  <script src="/static/fieldtoclipboard.js"></script>
+</body>
+</html>

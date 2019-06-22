@@ -1,0 +1,137 @@
+{
+    "estates": [{
+        "estate": "Distrito Federal",
+        "sigla": "DF",
+        "coordinates": [-15.755340, -47.756096]
+    },
+    {
+        "estate": "Acre",
+        "sigla": "AC",
+        "coordinates": [-9.126806,-71.4290298]
+    },
+    {
+        "estate": "Amazonas",
+        "sigla": "AM",
+        "coordinates": [-4.687400, -64.422560]
+    },
+    {
+        "estate": "Roraima",
+        "sigla": "RR",
+        "coordinates": [1.836370, -61.202689]
+    },
+    {
+        "estate": "Amapá",
+        "sigla": "AP",
+        "coordinates": [1.126303, -51.681506]
+    },
+    {
+        "estate": "Pará",
+        "sigla": "PA",
+        "coordinates": [-4.541306, -52.459006]
+    },
+    {
+        "estate": "Rondônia",
+        "sigla": "RO",
+        "coordinates": [-11.381086, -62.539742]
+    },
+    {
+        "estate": "Tocantins",
+        "sigla": "TO",
+        "coordinates": [-9.871627, -48.327721]
+    },
+    {
+        "estate": "Mato Grosso",
+        "sigla": "MT",
+        "coordinates": [-13.245065, -55.209073]
+    },
+    {
+        "estate": "Goiás",
+        "sigla": "GO",
+        "coordinates": [-16.682340, -50.100746]
+    },
+    {
+        "estate": "Mato Grosso do Sul",
+        "sigla": "MS",
+        "coordinates": [-20.586041, -54.341810]
+    },
+    {
+        "estate": "Minas Gerais",
+        "sigla": "MG",
+        "coordinates": [-18.156167, -43.857511]
+    },
+    {
+        "estate": "Paraná",
+        "sigla": "PR",
+        "coordinates": [-25.025425, -51.271520]
+    },
+    {
+        "estate": "Santa Catarina",
+        "sigla": "SC",
+        "coordinates": [-27.249505, -49.968418]
+    },
+    {
+        "estate": "Rio Grande do Sul",
+        "sigla": "RS",
+        "coordinates": [-29.782292, -52.988352]
+    },
+    {
+        "estate": "Rio de Janeiro",
+        "sigla": "RJ",
+        "coordinates": [-22.564510, -42.583148]
+    },
+    {
+        "estate": "Espírito Santo",
+        "sigla": "ES",
+        "coordinates": [-19.874462, -40.478937]
+    },
+    {
+        "estate": "Bahia",
+        "sigla": "BA",
+        "coordinates": [-12.607109, -41.188586]
+    },
+    {
+        "estate": "Sergipe",
+        "sigla": "SE",
+        "coordinates": [-10.744497, -37.383818]
+    },
+    {
+        "estate": "Alagoas",
+        "sigla": "AL",
+        "coordinates": [-9.862975, -36.271423]
+    },
+    {
+        "estate": "Pernambuco",
+        "sigla": "PE",
+        "coordinates": [-8.362745, -38.005736]
+    },
+    {
+        "estate": "Paraíba",
+        "sigla": "PB",
+        "coordinates": [-7.086275, -36.029209]
+    },
+    {
+        "estate": "Rio Grande do Norte",
+        "sigla": "RN",
+        "coordinates": [-5.749738, -36.324650]
+    },
+    {
+        "estate": "Ceará",
+        "sigla": "CE",
+        "coordinates": [-5.397438, -39.477103]
+    },
+    {
+        "estate": "Piauí",
+        "sigla": "PI",
+        "coordinates": [-7.960573, -42.642096]
+    },
+    {
+        "estate": "Maranhão",
+        "sigla": "MA",
+        "coordinates": [-5.511495, -45.392995]
+    },
+    {
+        "estate": "São Paulo",
+        "sigla": "SP",
+        "coordinates": [-22.107582, -48.860968]
+    }]
+}

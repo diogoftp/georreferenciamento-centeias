@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web: 
+    build: .
+    image: gabrielevi10/disease-map
+    environment:
+      DATABASE_URL: https://sala-de-situacao-bd.herokuapp.com/retrieve?
+    ports:
+      - 80:5000
+    volumes:
+      - .:/georreferenciamento-centeias
