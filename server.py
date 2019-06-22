@@ -12,7 +12,7 @@ logging.basicConfig(filename='static/entries.log', level=logging.ERROR)
 
 app = Flask(__name__, static_url_path='/static')
 
-database_url = "http://127.0.0.1:8080/noticias?"
+database_url = "http://192.168.15.45:8080/noticias?"
 # database_url = 'https://sala-de-situacao-bd.herokuapp.com/retrieve?'
 
 # parametros de filtragem
@@ -91,11 +91,12 @@ def get_database_search():
     for parameter in params_dict:
         if(params_dict[parameter] != '' and params_dict[parameter] != 'countries'):
             if('data' in parameter):
-                date = params_dict[parameter]
-                date = date.split('-')
-            #    search_query += 'year=' + date[0] + '&'
-            #    search_query += 'month=' + date[1] + '&'
-            #    search_query += 'day=' + date[2] + '&'            
+                if parameter == 'data_begin':
+                    date_begin = params_dict[parameter]
+                    date_begin = date_begin.split('-')
+                else:
+                    date_end = params_dict[parameter]
+                    date_end = date_end.split('-')
             else:
                 search_query += parameter + '=' + params_dict[parameter] + '&'
     search_query = search_query[:-1]   
@@ -110,7 +111,7 @@ def get_database_search():
     if(params_dict['event'] == ''):
         params_dict['event'] == 'Todos os Eventos'
     print('the search requisition is completed')
-    return jsonify(process_json(data, params_dict['country'] == "countries", date, params_dict['event']))
+    return jsonify(process_json(data, params_dict['country'] == "countries", date_begin, date_end, params_dict['event']))
 
 # Testa se o banco está disponível
 def database_availability():

@@ -33,7 +33,7 @@ def available_events(url):
 
 # Processa um Json para o front receber o dado
 # search_country define se deve-se buscar no brasil ou no mundo inteiro
-def process_json(data, search_country, date, event):
+def process_json(data, search_country, date_begin, date_end, event):
     # count_dic contém quantas noticias tem em cada localização
     count_dic = {}
     # url_dic contém as url's de cada localização
@@ -47,15 +47,26 @@ def process_json(data, search_country, date, event):
             # se n, pesquise estados
             local = result['uf']
 
-        if date != []:
+        if date_end != []:
             date_result = result['publishedAt'].split('T')[0].split('-')
-            if date_result[0] > date[0]:
+            if date_result[0] > date_end[0]:
                 continue
-            elif date_result[0] == date[0]:
-                if date_result[1] > date[1]:
+            elif date_result[0] == date_end[0]:
+                if date_result[1] > date_end[1]:
                     continue
-                elif date_result[1] == date[1]:
-                    if date_result[2] > date[2]:
+                elif date_result[1] == date_end[1]:
+                    if date_result[2] > date_end[2]:
+                        continue
+
+        if date_begin != []:
+            date_result = result['publishedAt'].split('T')[0].split('-')
+            if date_result[0] < date_begin[0]:
+                continue
+            elif date_result[0] == date_begin[0]:
+                if date_result[1] < date_begin[1]:
+                    continue
+                elif date_result[1] == date_begin[1]:
+                    if date_result[2] < date_begin[2]:
                         continue
 
         if local == '':            
