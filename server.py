@@ -87,7 +87,8 @@ def get_database_search():
     params_dict['data_begin'] = request.args.get('data_begin','')    
     params_dict['data_end'] = request.args.get('data_end','')
 
-
+    date_begin = []
+    date_end = []
     for parameter in params_dict:
         if(params_dict[parameter] != '' and params_dict[parameter] != 'countries'):
             if('data' in parameter):
