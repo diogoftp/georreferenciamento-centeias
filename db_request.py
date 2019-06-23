@@ -1,13 +1,11 @@
-import urllib.request, json 
+import json, requests
 from pprint import pprint
 import ssl
 
 def retrieve_json(this_url):
     # Pega um Json do banco de dados
-    #context = ssl._create_unverified_context()    
-    #with urllib.request.urlopen(this_url, context=context) as url:
-    with urllib.request.urlopen(this_url) as url:
-        data = json.loads(url.read().decode())
+    with requests.get(this_url) as url:
+        data = url.json()
         # Query vazia
         if(data == []):            
             return None

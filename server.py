@@ -12,8 +12,7 @@ logging.basicConfig(filename='static/entries.log', level=logging.ERROR)
 
 app = Flask(__name__, static_url_path='/static')
 
-database_url = "http://192.168.15.45:8080/noticias?"
-# database_url = 'https://sala-de-situacao-bd.herokuapp.com/retrieve?'
+database_url = "http://127.0.0.1:8080/noticias?"
 
 # parametros de filtragem
 params_dict = {'event': '', 'country': '', 'data_begin': '', 'data_end': ''}
@@ -21,7 +20,7 @@ params_dict = {'event': '', 'country': '', 'data_begin': '', 'data_end': ''}
 @app.route("/access/dates")
 # Retorna quantos acessos cada data teve
 def get_dates():
-    print('asking for number of access by date')
+    print('Asking for number of access by date')
     with open('static/entries.log') as my_file:
         lines = my_file.readlines()
 
@@ -40,7 +39,7 @@ def get_dates():
 @app.route("/access/ips")
 # Retorna quantas vezes cada ip acessou
 def get_ips():
-    print('asking for number of access by ips')
+    print('Asking for number of access by ips')
     with open('static/entries.log') as my_file:
         lines = my_file.readlines()
 
@@ -100,8 +99,7 @@ def get_database_search():
                     date_end = date_end.split('-')
             else:
                 search_query += parameter + '=' + params_dict[parameter] + '&'
-    search_query = search_query[:-1]   
-    print(database_url + search_query) 
+    search_query = search_query[:-1]
 
     data = retrieve_json(database_url + search_query)
     
@@ -111,7 +109,7 @@ def get_database_search():
 
     if(params_dict['event'] == ''):
         params_dict['event'] == 'Todos os Eventos'
-    print('the search requisition is completed')
+    print('The search requisition is completed')
     return jsonify(process_json(data, params_dict['country'] == "countries", date_begin, date_end, params_dict['event']))
 
 # Testa se o banco está disponível
@@ -136,7 +134,7 @@ def main_page(name=None):
     date = datetime.date.today()
     ip   = request.environ['REMOTE_ADDR']
 
-    print('logged ip')
+    print('Logged ip')
 
     logger.error(str(ip) + ' ' + str(date))
     
