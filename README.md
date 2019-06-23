@@ -10,3 +10,7 @@ python3 -m venv venv
 ```
 pip install -r requirements.txt
 ```
+Para executar sem o docker:
+```
+sudo python3 -E server.py
+```

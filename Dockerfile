@@ -1,6 +1,6 @@
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
-LABEL MAINTAINER="Léo Moraes leo.ms097@gmail.com"
+LABEL MAINTAINER="Camila Pontes cftpontes@gmail.com"
 
 
 RUN apt-get update
