@@ -148,5 +148,5 @@ def main_page(name=None):
 
 if __name__ == "__main__":    
     print('Starting app...')
-    app.run(port=8102, debug=True)    
-    #serve(app, port=8102)
+    #app.run(port=8102, debug=True)    
+    serve(app, port=8102)
