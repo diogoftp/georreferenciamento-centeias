@@ -4,13 +4,13 @@ import ssl
 
 def retrieve_json(this_url):
     # Pega um Json do banco de dados
-    with requests.get(this_url) as url:
-        data = url.json()
-        # Query vazia
-        if(data == []):            
-            return None
-        else:    
-            return data
+    url = requests.get(this_url)
+    data = url.json()
+    # Query vazia
+    if(data == []):            
+        return None
+    else:    
+        return data
 
 # Retorna as eventos disponiveis no banco
 def available_events(url):
