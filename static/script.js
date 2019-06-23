@@ -26,7 +26,7 @@ function getRadius(d) {
         d > 15 ? 7 : 
         d > 10 ? 6.5 : 
         d > 5 ? 6 : 
-        5; 
+        10; 
 }
 
 function open_share() {
