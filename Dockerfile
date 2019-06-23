@@ -13,9 +13,13 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 USER docker
 
 RUN sudo apt-get update
+
 RUN sudo apt-get -y install curl
-RUN sudo apt-get install -y python3-pip  
+
+RUN sudo apt-get install -y python3-pip
+
 RUN sudo apt-get install -y python-pip python-dev
+
 RUN sudo -s
 
 EXPOSE 5000
