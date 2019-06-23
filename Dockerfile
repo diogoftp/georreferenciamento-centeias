@@ -4,10 +4,10 @@ LABEL MAINTAINER="Camila Pontes cftpontes@gmail.com"
 
 
 RUN apt-get update
-RUN apt-get install sudo
+RUN sudo apt-get install
 
 RUN adduser --disabled-password --gecos '' docker
-RUN adduser docker sudo
+RUN sudo adduser docker
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER docker
