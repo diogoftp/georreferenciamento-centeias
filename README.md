@@ -14,3 +14,6 @@ Para executar sem o docker:
 ```
 sudo python3 -E server.py
 ```
+
+## Desenvolvedores
+O sistema foi desenvolvido por Gabriel Silva, Léo Silva e Luan Caldas (2018), e redesenhado por Camila Pontes e Diogo Pontes (2019).
