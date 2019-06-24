@@ -12,7 +12,8 @@ logging.basicConfig(filename='static/entries.log', level=logging.ERROR)
 
 app = Flask(__name__, static_url_path='/static')
 
-database_url = "http://127.0.0.1:8080/noticias?"
+database_url = os.environ['DATABASE_URL']
+#database_url = "http://192.168.15.45:8080/noticias?"
 
 # parametros de filtragem
 params_dict = {'event': '', 'country': '', 'data_begin': '', 'data_end': ''}
