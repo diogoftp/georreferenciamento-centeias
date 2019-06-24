@@ -1,0 +1,10 @@
+version: "2.2"
+services:
+  geomap-centeias: 
+    image: cftpontes/geomap-centeias:latest
+    environment:
+      DATABASE_URL: http://192.168.15.45:8080/noticias?
+    ports:
+      - 8102:5000
+    stdin_open: true
+    tty: true
