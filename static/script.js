@@ -26,7 +26,7 @@ function getRadius(d) {
         d > 15 ? 7 : 
         d > 10 ? 6.5 : 
         d > 5 ? 6 : 
-        10; 
+        5; 
 }
 
 function open_share() {
@@ -116,7 +116,7 @@ function fill_urls(e) {
         let description = element.description;
         let link = element.link;
         if (link != '' && (title != '' || description != ''))
-            $("#list-items").append('<li><a href="//' + link + '" target="_blank" class="link_url"><h4>' + title + '</h4><p>' + description + '</p></a></li>');
+            $("#list-items").append('<li><a href="//' + link.replace(/^https?:/, "") + '" target="_blank" class="link_url"><h4>' + title + '</h4><p>' + description + '</p></a></li>');
     });
     $('#links').show();
     $('.list-links').height($('#links').height() - $('#close-links').height() - 20);

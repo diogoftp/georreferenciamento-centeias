@@ -8,12 +8,12 @@ from pprint import pprint
 from db_request import retrieve_json, process_json, available_events
 from waitress import serve
     
-logging.basicConfig(filename='static/entries.log', level=logging.ERROR)
+logging.basicConfig(filename='logs/entries.log', level=logging.ERROR)
 
 app = Flask(__name__, static_url_path='/static')
 
 database_url = os.environ['DATABASE_URL']
-#database_url = "http://192.168.15.45:8080/noticias?"
+#database_url = "http://127.0.0.1:8080/noticias?"
 
 # parametros de filtragem
 params_dict = {'event': '', 'country': '', 'data_begin': '', 'data_end': ''}
@@ -22,7 +22,7 @@ params_dict = {'event': '', 'country': '', 'data_begin': '', 'data_end': ''}
 # Retorna quantos acessos cada data teve
 def get_dates():
     print('Asking for number of access by date')
-    with open('static/entries.log') as my_file:
+    with open('logs/entries.log') as my_file:
         lines = my_file.readlines()
 
     dic = {}
@@ -41,7 +41,7 @@ def get_dates():
 # Retorna quantas vezes cada ip acessou
 def get_ips():
     print('Asking for number of access by ips')
-    with open('static/entries.log') as my_file:
+    with open('logs/entries.log') as my_file:
         lines = my_file.readlines()
 
     dic = {}
@@ -102,7 +102,7 @@ def get_database_search():
                 search_query += parameter + '=' + params_dict[parameter] + '&'
     search_query = search_query[:-1]
 
-    data = retrieve_json(database_url + search_query)
+    data = retrieve_json(database_url + search_query + "&items=10000")
     
     if data == None:
         print('The search parameters returned nothing')

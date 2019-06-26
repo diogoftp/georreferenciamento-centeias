@@ -26,7 +26,7 @@ EXPOSE 5000
 
 COPY ./requirements.txt /app/requirements.txt
 
-COPY ./static/entries.log /app/static/entries.log
+COPY ./logs/entries.log /app/logs/entries.log
 
 WORKDIR /app
 
