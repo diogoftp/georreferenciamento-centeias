@@ -147,6 +147,24 @@ def main_page(name=None):
     print('Returning home page html')
     return render_template('index.html')
 
+def write_views(news):
+    for item in news:
+        news_id = item['data']['id']
+        news_url = database_url[:-1] + '/' + news_id + '.json'
+        item['data']['mapViews'] += 1
+        head = {'Authorization': 'Basic TOKEN'}
+        requests.patch(url=news_url, data=item, headers=head)
+    return len(news)
+        
+
+def write_details(news):
+    news_id = news['data']['id']
+    news_url = database_url[:-1] + '/' + news_id + '.json'
+    news['data']['mapDetails'] += 1
+    head = {'Authorization': 'Basic TOKEN'}
+    requests.patch(url=news_url, data=news, headers=head)
+
+
 if __name__ == "__main__":    
     print('Starting app...')
     #app.run(port=5000, debug=True)    

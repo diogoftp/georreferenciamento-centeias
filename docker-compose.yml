@@ -4,6 +4,7 @@ services:
     image: cftpontes/geomap-centeias:latest
     environment:
       DATABASE_URL: http://192.168.15.45:8080/noticias?
+      TOKEN: ZGV2OmFwaWtleQ==
     ports:
       - 8102:5000
     stdin_open: true
