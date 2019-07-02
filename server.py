@@ -173,5 +173,5 @@ def write_views(news_id):
 
 if __name__ == "__main__":    
     print('Starting app...')
-    app.run(port=5000, debug=True)    
-    #serve(app, port=5000)
+    #app.run(port=5000, debug=True)    
+    serve(app, port=5000)
