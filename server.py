@@ -13,6 +13,7 @@ logging.basicConfig(filename='logs/entries.log', level=logging.ERROR)
 app = Flask(__name__, static_url_path='/static')
 
 database_url = os.environ['DATABASE_URL']
+token = os.environ['TOKEN']
 #database_url = "http://127.0.0.1:8080/noticias?"
 
 # parametros de filtragem
@@ -65,7 +66,7 @@ def retrieve_estates():
 
 @app.route('/get_database_events')
 def get_database_events():
-    data = available_events(database_url)
+    data = available_events(database_url+'items=10000')
     if data == None:
         return {}
     else:
@@ -147,25 +148,30 @@ def main_page(name=None):
     print('Returning home page html')
     return render_template('index.html')
 
-def write_views(news):
-    for item in news:
-        news_id = item['data']['id']
-        news_url = database_url[:-1] + '/' + news_id + '.json'
-        item['data']['mapViews'] += 1
-        head = {'Authorization': 'Basic TOKEN'}
-        requests.patch(url=news_url, data=item, headers=head)
-    return len(news)
+@app.route('/write_details/<news_id>')
+def write_details(news_id):
+    news_url = database_url[:-1] + '/' + news_id
+    old_views = requests.get(news_url).json()
+    old_views = old_views['data']['indicators']['mapDetails']
+    views = int(old_views) + 1
+    news = {'indicators':{'mapDetails': ''+str(views)+''}}
+    head = {'Authorization': 'Basic '+token+''}
+    requests.patch(url=news_url, json=news, headers=head)
+    return jsonify("done"), 200
         
-
-def write_details(news):
-    news_id = news['data']['id']
-    news_url = database_url[:-1] + '/' + news_id + '.json'
-    news['data']['mapDetails'] += 1
-    head = {'Authorization': 'Basic TOKEN'}
-    requests.patch(url=news_url, data=news, headers=head)
+@app.route("/write_views/<news_id>")
+def write_views(news_id):
+    news_url = database_url[:-1] + '/' + news_id
+    old_views = requests.get(news_url).json()
+    old_views = old_views['data']['indicators']['mapViews']
+    views = int(old_views) + 1
+    news = {'indicators':{'mapViews': ''+str(views)+''}}
+    head = {'Authorization': 'Basic '+token+''}
+    requests.patch(url=news_url, json=news, headers=head)
+    return jsonify("done"), 200
 
 
 if __name__ == "__main__":    
     print('Starting app...')
-    #app.run(port=5000, debug=True)    
-    serve(app, port=5000)
+    app.run(port=5000, debug=True)    
+    #serve(app, port=5000)

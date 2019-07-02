@@ -81,13 +81,15 @@ def process_json(data, search_country, date_begin, date_end, event):
             url_dic[local] = [
                 {'link': result['url'],
                 'title': result['title'],
-                'description':result['description']
+                'description':result['description'],
+                'id':result['id']
                 }]
         else:
             url_dic[local].append(
                 {'link': result['url'],
                 'title': result['title'],
-                'description':result['description']
+                'description':result['description'],
+                'id':result['id']
                 })
                 
     result_dictionary = {}

@@ -109,14 +109,27 @@ function fill_select_events(data) {
     }
 }
 
+function update_views(id) {
+    $.get("write_views/" + id);
+}
+
+function update_details(id) {
+    $.get("write_details/" + id);
+}
+
 function fill_urls(e) {
     $('#list-items').html('');
+    urls[e.target.options.customID].forEach(element => {
+        let id = element.id;
+        update_details(id);
+    });
     urls[e.target.options.customID].forEach(element => {
         let title = element.title;
         let description = element.description;
         let link = element.link;
+        let id = element.id;
         if (link != '' && (title != '' || description != ''))
-            $("#list-items").append('<li><a href="//' + link.replace(/^https?:/, "") + '" target="_blank" class="link_url"><h4>' + title + '</h4><p>' + description + '</p></a></li>');
+            $("#list-items").append('<li><a onclick="update_views(\''+id+'\')" href="//' + link.replace(/^https?:/, "") + '" target="_blank" class="link_url"><h4>' + title + '</h4><p>' + description + '</p></a></li>')
     });
     $('#links').show();
     $('.list-links').height($('#links').height() - $('#close-links').height() - 20);
